@@ -1,0 +1,8 @@
+body {
+  overflow-x: hidden;
+}
+.sidebar-outer {
+  height: calc(100 * 10px);
+  display: flex;
+  flex-direction: column;
+}

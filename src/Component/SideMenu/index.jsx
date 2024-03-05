@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-scroll";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 let menu = [
   {
     no: "00",
@@ -53,29 +54,41 @@ let menu = [
   },
 ];
 
-const index = () => {
+const Index = () => {
+  const container = useRef(null);
+  const allSection = menu.map(value => console.log(value["id"]));
+  console.log(allSection);
+  useGSAP(
+    () => {
+      // let targets = gsap.utils.toArray($(".class"));
+    },
+    { scope: container }
+  );
+  let smoothScroll = item => {
+    document.querySelector(`#${item}-main`).scrollIntoView({ behavior: "smooth" });
+  };
   return (
-    <div className="sidebar-outer min-w-[200px] sticky top-0">
+    <div
+      ref={container}
+      className="sidebar-outer min-w-[200px] sticky top-0"
+    >
       {menu.map(item => {
         return (
-          <Link
-            to={`${item.id}-section`}
-            spy={true}
-            smooth={true}
-            offset={100}
+          <div
+            onClick={() => smoothScroll(item.id)}
             key={item.no}
-            className={`w-full my-2 rounded-lg px-5 py-4 min-h-[100px] flex flex-col justify-between  ${
-              item.no == 0 ? "bg-white text-brand-200" : item.no == 1 ? "bg-brand-100 text-brand-200" : "bg-brand-200 text-brand-0"
+            className={`w-full mb-3 rounded-lg px-5 py-4 min-h-[100px] flex flex-col justify-between  ${
+              item.no === "00" ? "bg-white text-brand-200" : item.no === "01" ? "bg-brand-100 text-brand-200" : "bg-brand-200 text-brand-0"
             }`}
             id={`${item.id}-section`}
           >
             <div>{item.no}</div>
             <div>{item.title}</div>
-          </Link>
+          </div>
         );
       })}
     </div>
   );
 };
 
-export default index;
+export default Index;

@@ -2,7 +2,10 @@ body {
   overflow-x: hidden;
 }
 .sidebar-outer {
-  height: calc(100 * 10px);
+  height: fit-content;
   display: flex;
   flex-direction: column;
+}
+.border-1 {
+  border-width: 1px;
 }

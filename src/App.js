@@ -29,7 +29,7 @@ const App = () => {
           end: "100% 90%",
           ease: "power.In",
           scrub: 1,
-          markers: true,
+          // markers: true,
           onToggle: self => {
             if (
               document.querySelector(`#${self.trigger.dataset.entersection}`).clientHeight == self.trigger.dataset.height ||

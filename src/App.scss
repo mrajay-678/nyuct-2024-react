@@ -1,11 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap");
 body {
   overflow-x: hidden;
+  font-family: "Fira Sans", sans-serif;
 }
 .sidebar-outer {
   height: fit-content;
   display: flex;
   flex-direction: column;
 }
-.border-1 {
-  border-width: 1px;
+.dot {
+  position: absolute;
+  right: 20px;
+}
+.marquee-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  width: max-content;
+  display: flex;
+  position: relative;
+  animation-name: marquee;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  overflow: hidden;
+  animation-delay: -20s;
+}
+
+.marquee-animation:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(60%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }

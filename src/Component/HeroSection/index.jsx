@@ -5,7 +5,7 @@ const index = () => {
     <>
       <div
         id="nyuct-main"
-        className="h-screen rounded-lg border-brand-200 border-1 w-full p-10 mb-3 flex flex-col justify-between"
+        className="h-screen rounded-lg border-brand-200 border w-full p-10 mb-3 flex flex-col justify-between"
       >
         <div className="flex justify-between">
           <div className="text-brand-200 font-bold text-[21px]">
@@ -16,13 +16,14 @@ const index = () => {
             Venture Design <br />& Innovation
           </div>
         </div>
-        <marquee
-          behavior="smooth"
-          direction="left"
-          className="text-[38vw] text-brand-200 leading-none"
-        >
-          NYUCT
-        </marquee>
+        <div className="text-[38vw] marquee-animation text-brand-200 leading-none">
+          <span
+            className="marquee__inner"
+            style={{ animationDuration: "40s" }}
+          >
+            NYUCT NYUCT NYUCT NYUCT
+          </span>
+        </div>
       </div>
     </>
   );

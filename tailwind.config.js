@@ -12,9 +12,6 @@ module.exports = withMT({
           300: "#ff565c",
         },
       },
-      animationDurtion: {
-        10: "10s",
-      },
     },
   },
   plugins: [],

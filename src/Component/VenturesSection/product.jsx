@@ -4,18 +4,27 @@ import { Collapse, Card, CardBody } from "@material-tailwind/react";
 const Product = ({ data }) => {
   const [open, setOpen] = React.useState(false);
 
-  const toggleOpen = () => setOpen(cur => !cur);
+  const toggleOpen = () => {
+    setOpen(cur => !cur);
+    !open ? (document.querySelector(".root-child").style.backgroundColor = "#323e48a6") : (document.querySelector("#root div").style.backgroundColor = "#fff");
+  };
   return (
     <>
       <div
-        className=" h-[20vh] bg-brand-200 rounded-lg mb-3 flex justify-between items-center p-10"
+        className=" bg-brand-200 rounded-lg mb-3 p-10 "
         onClick={toggleOpen}
       >
-        <div className="text-3xl text-brand-0">{data.name}</div>
-        <div className="text-xl text-brand-100">{data.type}</div>
-        <div></div>
+        <div className="flex justify-between items-center h-full">
+          <div className="text-3xl text-brand-0">{data.name}</div>
+          <div className="text-xl text-brand-100">{data.type}</div>
+          <div></div>
+        </div>
+        {open && <div className=" py-20 text-brand-0 text-3xl">Making of the world's first 100% Himalayan distillery. From farm to bottle</div>}
       </div>
-      <Collapse open={open}>
+      <Collapse
+        className={`transition-all ${open ? "duration-1000" : "duration-0"} `}
+        open={open}
+      >
         <Card className="my-4 w-full bg-transparent shadow-inherit">
           <CardBody className="p-0 bg-transparent">
             <div className="border border-brand-200 bg-brand-0 rounded-lg p-10">

@@ -62,7 +62,7 @@ const Index = () => {
   return (
     <div
       ref={container}
-      className="sidebar-outer transition-all min-w-[200px] sticky top-0"
+      className="flex gap-3 w-full overflow-hidden lg:flex-col lg:gap-0 lg:w-[200px] sidebar-outer transition-all  sticky top-[10px] "
     >
       {menu.map(item => {
         return (
@@ -76,7 +76,12 @@ const Index = () => {
           >
             <div>0{item.no}</div>
             <div>{item.title}</div>
-            <div className={`dot hidden dot-${item.no}`}>●</div>
+            <div className={`dot hidden dot-${item.no} ${item.no == "0" && "!hidden"}`}>●</div>
+            {item.no == "0" && (
+              <div className="logo opacity-0 absolute left-[20px] w-9/12">
+                <img src={require("../assets/img/nyuct-logo.png")} />
+              </div>
+            )}
           </div>
         );
       })}

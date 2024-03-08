@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -11,6 +11,7 @@ import Ventures from "./Component/VenturesSection";
 const App = () => {
   gsap.registerPlugin(ScrollTrigger);
   const container = useRef();
+  const [height, Height] = useState("0");
   useGSAP(
     () => {
       let targets = gsap.utils.toArray(document.querySelectorAll(".main-section"));
@@ -43,10 +44,12 @@ const App = () => {
         });
         changeLogo.to(`#nyuct-section div`, { opacity: 0 });
         changeLogo.to(`#nyuct-section .logo`, { opacity: 1 });
+        Height(`${document.querySelector(`#${item.id}`).clientHeight}`);
+        console.log(height);
         ScrollTrigger.create({
           trigger: item,
           start: "0% 20%",
-          end: `${document.querySelector(`#${item.id}`).clientHeight}px 90%`,
+          end: `+=${height}px 90%`,
           ease: "power.In",
           scrub: 1,
           markers: true,
@@ -67,11 +70,6 @@ const App = () => {
                 ? (document.querySelector(`#${self.trigger.dataset.entersection}`).style.height = "100px")
                 : (document.querySelector(`#${self.trigger.dataset.entersection}`).style.width = "100px");
             }
-          },
-          onEnter: () => {
-            // if (index > 3) {
-            //   document.querySelector(".sidebar-outer").style.top = "-600px";
-            // }
           },
         });
       });

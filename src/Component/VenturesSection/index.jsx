@@ -15,14 +15,12 @@ const index = () => {
         <span className="text-brand-0 text-[200px] font-semibold">Ventures</span>
       </div>
       {/* <Product /> */}
-      <div style={{ height: `${productArray.length * 200}px`, overflowY: "scroll" }}>
-        {productArray.map((item, index) => (
-          <Product
-            key={index}
-            data={item}
-          />
-        ))}
-      </div>
+      {productArray.map((item, index) => (
+        <Product
+          key={index}
+          data={item}
+        />
+      ))}
     </div>
   );
 };

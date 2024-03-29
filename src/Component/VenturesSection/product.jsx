@@ -1,12 +1,13 @@
 import React from "react";
 import { Collapse, Card, CardBody } from "@material-tailwind/react";
 
-const Product = ({ data }) => {
+const Product = ({ data, height }) => {
   const [open, setOpen] = React.useState(false);
 
   const toggleOpen = () => {
     setOpen(cur => !cur);
     !open ? (document.querySelector(".root-child").style.backgroundColor = "#323e48a6") : (document.querySelector("#root div").style.backgroundColor = "#fff");
+    // console.log(height);
   };
   return (
     <>
@@ -43,17 +44,17 @@ const Product = ({ data }) => {
                 <div className="w-5/12">{data.para[1]}</div>
               </div>
             </div>
-            <div className=" text-2xl px-10 py-4 rounded-full bg-brand-200 text-brand-0 text-center mt-3">{data.capsule[0]}</div>
+            <div className=" text-2xl px-5 md:px-10 py-4 rounded md:rounded-full bg-brand-200 text-brand-0 text-left md:text-center mt-3">{data.capsule[0]}</div>
             <div className="flex gap-3 mt-3">
               {data.firstImg.map((item, index) => (
                 <div
                   key={index}
-                  className="w-4/12 min-h-[75vh] h-[75vh] rounded-lg bg-brand-100 "
+                  className="w-4/12 h-full md:min-h-[75vh] md:h-[75vh] rounded-lg bg-brand-100 "
                 >
                   <img
                     src={require(`../assets/img/${item}`)}
                     alt=""
-                    className="w-full h-full object-contain"
+                    className="w-full h-[200px] md:h-full object-contain"
                     srcSet=""
                   />
                 </div>
@@ -82,7 +83,7 @@ const Product = ({ data }) => {
                 </div>
               ))}
             </div>
-            <div className="h-[10vh] px-10 py-3 rounded-full bg-brand-300 text-brand-0 mt-3">{data.capsule[1]}</div>
+            <div className="px-5 md:px-10 py-3 rounded md:rounded-full bg-brand-300 text-brand-0 mt-3">{data.capsule[1]}</div>
             <div className="flex gap-3 mt-3">
               {data.thirdImg.map((item, index) => (
                 <div

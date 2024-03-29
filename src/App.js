@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -11,7 +11,7 @@ import Ventures from "./Component/VenturesSection";
 const App = () => {
   gsap.registerPlugin(ScrollTrigger);
   const container = useRef();
-  const [height, Height] = useState("0");
+  const [innerHeight, setinnerHeight] = useState("true");
   useGSAP(
     () => {
       let targets = gsap.utils.toArray(document.querySelectorAll(".main-section"));
@@ -33,7 +33,7 @@ const App = () => {
             scrub: 1,
           },
         });
-        menuPos.to(`.sidebar-outer`, { top: "-300px" });
+        document.innerWidth >= 540 && menuPos.to(`.sidebar-outer`, { top: "-300px" });
         let changeLogo = gsap.timeline({
           scrollTrigger: {
             trigger: targets[0],
@@ -44,19 +44,18 @@ const App = () => {
         });
         changeLogo.to(`#nyuct-section div`, { opacity: 0 });
         changeLogo.to(`#nyuct-section .logo`, { opacity: 1 });
-        Height(`${document.querySelector(`#${item.id}`).clientHeight}`);
-        console.log(height);
         ScrollTrigger.create({
           trigger: item,
-          start: "0% 20%",
-          end: `+=${height}px 90%`,
+          start: "0% 50%",
+          end: `bottom 50%`,
           ease: "power.In",
           scrub: 1,
-          markers: true,
+          // markers: true,
           onToggle: self => {
             if (
-              document.querySelector(`#${self.trigger.dataset.entersection}`).clientHeight == self.trigger.dataset.height ||
-              document.querySelector(`#${self.trigger.dataset.entersection}`).clientHeight == 100
+              (document.querySelector(`#${self.trigger.dataset.entersection}`).clientHeight == self.trigger.dataset.height ||
+                document.querySelector(`#${self.trigger.dataset.entersection}`).clientHeight == 100) &&
+              document.innerWidth <= 540
             ) {
               console.log(window.innerWidth);
               window.innerWidth >= "1024"
@@ -76,29 +75,28 @@ const App = () => {
     },
     { scope: container }
   );
+  useEffect(() => {}, [innerHeight]);
   return (
     <div
       ref={container}
       className="block bg-brand-0 relative lg:flex w-screen p-4 gap-4 root-child"
     >
       <Sidebar />
-      <div className="w-[calc(100%-230px)] me-4">
+      <div className="md:w-[calc(100%-230px)] me-4">
         <Hero />
         <Hello />
-        <Ventures />
+        <Ventures divheight={setinnerHeight} />
         <div
           id="innovations-main"
           data-entersection="innovations-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
-        >
-          innovations-main
-        </div>
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
+        ></div>
         <div
           id="products-main"
           data-entersection="products-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
         >
           products-main
         </div>
@@ -106,7 +104,7 @@ const App = () => {
           id="brands-main"
           data-entersection="brands-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
         >
           brands-main
         </div>
@@ -114,7 +112,7 @@ const App = () => {
           id="experiences-main"
           data-entersection="experiences-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
         >
           experiences-main
         </div>
@@ -122,7 +120,7 @@ const App = () => {
           id="impact-main"
           data-entersection="impact-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
         >
           impact-main
         </div>
@@ -130,7 +128,7 @@ const App = () => {
           id="storytelling-main"
           data-entersection="storytelling-section"
           data-height="500px"
-          className="h-screen main-section border-black border-2 w-full"
+          className="h-screen main-section border-black border-2 w-full bg-brand-200 mt-5 rounded-lg"
         >
           storytelling-main
         </div>
@@ -142,7 +140,7 @@ const App = () => {
         >
           <div className=" h-screen w-full bg-brand-100 p-10 rounded-lg mb-3 flex flex-col justify-between">
             <span className="text-brand-0 text-[150px]">01</span>
-            <span className="text-brand-0 text-[200px] font-semibold">Hello</span>
+            <span className="text-brand-0 text-[200px] font-semibold overflow-hidden">Hello</span>
           </div>
         </div>
       </div>

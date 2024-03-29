@@ -1,4 +1,5 @@
 import React from "react";
+import Marquee from "../Marquee";
 
 const index = () => {
   return (
@@ -19,12 +20,10 @@ const index = () => {
           </div>
         </div>
         <div className="text-[38vw] marquee-animation text-brand-200 leading-none">
-          <span
-            className="marquee__inner"
-            style={{ animationDuration: "10s" }}
-          >
-            NYUCT
-          </span>
+          <Marquee
+            text={"NYUCT"}
+            speed="1s"
+          />
         </div>
       </div>
     </>

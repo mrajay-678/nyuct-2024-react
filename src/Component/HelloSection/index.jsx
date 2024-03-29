@@ -10,7 +10,7 @@ const index = () => {
     >
       <div className=" h-screen w-full bg-brand-100 p-10 rounded-lg mb-3 flex flex-col justify-between">
         <span className="text-brand-0 text-[140px]">01</span>
-        <span className="text-brand-0 text-[240px] font-semibold">Hello</span>
+        <span className="text-brand-0 text-2xl md:text-[240px] font-semibold">Hello</span>
       </div>
       <div className="py-2 tracking-wider bg-brand-300 rounded-lg mb-3 text-[45px] text-brand-0 overflow-hidden ">
         <div className="marquee-animation">

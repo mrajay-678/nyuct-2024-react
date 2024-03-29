@@ -62,7 +62,7 @@ const Index = () => {
   return (
     <div
       ref={container}
-      className="flex gap-3 w-full overflow-hidden lg:flex-col lg:gap-0 lg:w-[200px] sidebar-outer transition-all  sticky top-[10px] "
+      className="flex gap-3 w-full overflow-hidden lg:flex-col lg:gap-0 lg:w-[200px] sidebar-outer transition-all  sticky top-[100vh] md:top-[10px] "
     >
       {menu.map(item => {
         return (

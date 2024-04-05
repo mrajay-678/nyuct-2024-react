@@ -1,0 +1,29 @@
+.marquee-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  width: max-content;
+  display: flex;
+  position: relative;
+  animation-name: marquee;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  overflow: hidden;
+  transform: translateX(0%);
+}
+
+.marquee-animation:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

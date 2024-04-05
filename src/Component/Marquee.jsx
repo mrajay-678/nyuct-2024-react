@@ -6,9 +6,9 @@ const Marquee = ({ text, speed }) => {
       <div className="marquee-animation">
         <span
           className="marquee__inner"
-          style={{ animationDirection: `${speed}` }}
+          style={{ animationDuration: `${speed}` }}
         >
-          {text}
+          {`${text}  ${text}  ${text}  ${text}  ${text}  ${text}`}
         </span>
       </div>
     </>

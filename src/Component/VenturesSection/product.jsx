@@ -1,30 +1,54 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Collapse, Card, CardBody } from "@material-tailwind/react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 const Product = ({ data, height }) => {
-  const [open, setOpen] = React.useState(false);
+  gsap.registerPlugin(ScrollTrigger);
+  const [divopen, setdivOpen] = React.useState(false);
 
-  const toggleOpen = () => {
-    setOpen(cur => !cur);
-    !open ? (document.querySelector(".root-child").style.backgroundColor = "#323e48a6") : (document.querySelector("#root div").style.backgroundColor = "#fff");
-    // console.log(height);
+  const toggledivOpen = () => {
+    divopen ? setdivOpen(false) : setdivOpen(true);
+    !divopen ? (document.querySelector(".root-child").style.backgroundColor = "#323e48a6") : (document.querySelector("#root div").style.backgroundColor = "#fff");
   };
+  const container = useRef();
+  useGSAP(
+    () => {
+      ScrollTrigger.create({
+        trigger: "#divopen-main",
+        start: "0% 0%",
+        end: `bottom 100%`,
+        ease: "power.In",
+        scrub: 1,
+        markers: true,
+        onToggle: self => {
+          // !divopen && setdivOpen(cur => !cur);
+        },
+      });
+    },
+    { dependencies: [divopen], scope: container }
+  );
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [divopen]);
   return (
     <>
       <div
         className=" bg-brand-200 rounded-lg mb-3 p-10 "
-        onClick={toggleOpen}
+        onClick={toggledivOpen}
+        ref={container}
       >
         <div className="flex justify-between items-center h-full">
-          <div className="text-3xl text-brand-0">{data.name}</div>
-          <div className="text-xl text-brand-100">{data.type}</div>
-          <div></div>
+          <div className="text-3xl w-4/12 text-brand-0">{data.name}</div>
+          <div className="text-xl text-center w-4/12 text-brand-100">{data.type}</div>
+          <div className="w-4/12"></div>
         </div>
-        {open && <div className=" py-20 text-brand-0 text-3xl">Making of the world's first 100% Himalayan distillery. From farm to bottle</div>}
+        {divopen && <div className=" py-20 text-brand-0 text-3xl">Making of the world's first 100% Himalayan distillery. From farm to bottle</div>}
       </div>
       <Collapse
-        className={`transition-all ${open ? "duration-1000" : "duration-0"} `}
-        open={open}
+        className={`transition-all ${divopen ? "duration-1000" : "duration-0"} `}
+        open={divopen}
       >
         <Card className="my-4 w-full bg-transparent shadow-inherit">
           <CardBody className="p-0 bg-transparent">
@@ -52,7 +76,7 @@ const Product = ({ data, height }) => {
                   className="w-4/12 h-full md:min-h-[75vh] md:h-[75vh] rounded-lg bg-brand-100 "
                 >
                   <img
-                    src={require(`../assets/img/${item}`)}
+                    src={require(`../assets/img/${data.folder}/${item}`)}
                     alt=""
                     className="w-full h-[200px] md:h-full object-contain"
                     srcSet=""
@@ -63,9 +87,11 @@ const Product = ({ data, height }) => {
             <div className="mt-3">
               <video
                 className="w-full"
-                src={data.video}
+                src={require(`../assets/img/${data.folder}/${data.video}`)}
                 autoPlay
                 playsInline
+                loop
+                muted
               ></video>
             </div>
             <div className="flex gap-3 mt-3">
@@ -75,7 +101,7 @@ const Product = ({ data, height }) => {
                   className={`${index == 0 ? "w-8/12" : "w-4/12"} rounded-lg bg-brand-100 `}
                 >
                   <img
-                    src={require(`../assets/img/${item}`)}
+                    src={require(`../assets/img/${data.folder}/${item}`)}
                     alt=""
                     className="w-full h-full object-contain"
                     srcSet=""
@@ -91,7 +117,7 @@ const Product = ({ data, height }) => {
                   className="w-6/12 bg-brand-200 rounded-lg"
                 >
                   <img
-                    src={require(`../assets/img/${item}`)}
+                    src={require(`../assets/img/${data.folder}/${item}`)}
                     alt=""
                     className="w-full h-full object-contain"
                     srcSet=""

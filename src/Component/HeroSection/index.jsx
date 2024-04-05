@@ -22,7 +22,7 @@ const index = () => {
         <div className="text-[38vw] marquee-animation text-brand-200 leading-none">
           <Marquee
             text={"NYUCT"}
-            speed="1s"
+            speed="30s"
           />
         </div>
       </div>

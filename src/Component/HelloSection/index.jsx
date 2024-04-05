@@ -1,4 +1,5 @@
 import React from "react";
+import Marquee from "../Marquee";
 
 const index = () => {
   return (
@@ -10,17 +11,13 @@ const index = () => {
     >
       <div className=" h-screen w-full bg-brand-100 p-10 rounded-lg mb-3 flex flex-col justify-between">
         <span className="text-brand-0 text-[140px]">01</span>
-        <span className="text-brand-0 text-2xl md:text-[240px] font-semibold">Hello</span>
+        <span className="text-brand-0 text-2xl leading-none md:text-[240px] font-semibold">Hello</span>
       </div>
       <div className="py-2 tracking-wider bg-brand-300 rounded-lg mb-3 text-[45px] text-brand-0 overflow-hidden ">
-        <div className="marquee-animation">
-          <span
-            className="font-semibold marquee__inner"
-            style={{ animationDuration: "20s" }}
-          >
-            ● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS{" "}
-          </span>
-        </div>
+        <Marquee
+          text={"● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS ● WE ARE VENTURE DESIGNERS"}
+          speed="100s"
+        />
       </div>
       <div className="w-full bg-brand-0 border-brand-200 border p-10 rounded-lg mb-3 pt-20">
         <span className="text-brand-200 text-[29px] ">

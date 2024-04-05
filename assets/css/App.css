@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap");
+body {
+  overflow-x: hidden;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.sidebar-outer {
+  height: fit-content;
+}
+
+.dot {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.marquee-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  width: max-content;
+  display: flex;
+  position: relative;
+  animation-name: marquee;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  overflow: hidden;
+  transform: translateX(0%);
+}
+
+.marquee-animation:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

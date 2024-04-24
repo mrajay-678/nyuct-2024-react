@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { Collapse, Card, CardBody } from "@material-tailwind/react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Product = ({ data, height }) => {
   gsap.registerPlugin(ScrollTrigger);
